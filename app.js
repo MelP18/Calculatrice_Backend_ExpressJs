@@ -30,7 +30,7 @@ app.use(express.static(path.join(__dirname, 'public')));
     next()
 }); */
 app.use(function(req, res, next){
-    res.header('Access-Control-Allow-Origin', 'https://calculatricemelp.netlify.app/'); // Remplacez par l'URL de votre frontend sur Netlify
+    res.header('Access-Control-Allow-Origin', 'https://calculatricemelp.netlify.app'); // Remplacez par l'URL de votre frontend sur Netlify
     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With, other-headers-if-needed');
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS'); // Ajoutez les méthodes que vous utilisez
 
