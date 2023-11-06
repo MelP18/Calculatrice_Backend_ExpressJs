@@ -11,7 +11,6 @@ const addCalculation = async (req, res, next) =>{
         }).save()
     }catch(error){
         res.status(500).json({message: error.message})
-        console.log(error);
     }
 }
 

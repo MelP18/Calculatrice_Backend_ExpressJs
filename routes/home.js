@@ -7,7 +7,6 @@ const authMiddleware = require('../middleware/auth.middleware')
 router.get('/',authMiddleware, function(req, res, next){
     const user = req.user
     const userPath = `../avatars/`+req.user.avatar
-    console.log(userPath)
     res.status(200).send(user)
 })
 
