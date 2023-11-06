@@ -24,11 +24,28 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //acces data
-app.use(function(req, res, next){
+/* app.use(function(req, res, next){
     res.header('Access-Control-Allow-Origin',"*")
     res.header('Access-Control-Allow-Headers',"*")
     next()
+}); */
+app.use(function(req, res, next){
+    res.header('Access-Control-Allow-Origin', 'https://calculatricemelp.netlify.app/'); // Remplacez par l'URL de votre frontend sur Netlify
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With, other-headers-if-needed');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS'); // Ajoutez les méthodes que vous utilisez
+
+    // Autorisez les cookies et l'authentification avec les en-têtes CORS
+    res.header('Access-Control-Allow-Credentials', 'true');
+
+    if (req.method === 'OPTIONS') {
+        // Répondez aux pré-vérifications CORS avec succès
+        res.sendStatus(200);
+    } else {
+        // Passez à la route suivante
+        next();
+    }
 });
+
 
 app.use('/', indexRouter);
 app.use('/auth', userRouter)
