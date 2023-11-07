@@ -6,12 +6,12 @@ const mail = {
         return this
     },
     
-    send: async function(subject,body, code){
+    send: async function(subject,body){
         await mailer.sendMail({
-            from:"no_reply@gmail.com",
+            from:"gsnmelp@gmail.com",
             to:this.email,
             subject: subject,
-            text:body + code   ,
+            text:body,
             
         })
     }     
