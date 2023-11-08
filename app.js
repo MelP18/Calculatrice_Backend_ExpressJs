@@ -1,4 +1,5 @@
 var express = require('express');
+const cors = require('cors');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -24,12 +25,19 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //acces data
-app.use(function(req, res, next){
+/* app.use(function(req, res, next){
     res.header('Access-Control-Allow-Origin',"*")
     res.header('Access-Control-Allow-Headers',"*")
     next()
-});
-
+}); */
+const corsOptions = {
+    origin: 'https://calculatricemelp.netlify.app',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: false, // Si vous avez besoin de prendre en charge les cookies (sessions, authentification, etc.)
+    optionsSuccessStatus: 204, // Pour les requêtes OPTIONS sans corps
+  };
+  
+  app.use(cors(corsOptions));
 
 
 app.use('/', indexRouter);
