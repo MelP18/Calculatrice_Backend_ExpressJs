@@ -80,11 +80,27 @@ app.use('/home', homeRouter);
 /* Route test MongoDB */
 app.get('/test-db', async (req, res) => {
   try {
-    await connectDB();
-    res.json({ ok: true, message: "MongoDB connecté" });
+    console.log("⏳ Tentative connexion MongoDB...");
+    const conn = await connectDB();
+    console.log("✅ Connexion réussie :", conn.connection.host);
+    res.json({ ok: true, message: "MongoDB connecté", host: conn.connection.host });
   } catch (err) {
-    res.status(500).json({ ok: false, error: err.message });
+    console.error("💥 ERREUR CONNEXION MONGO :", err);
+    res.status(500).json({ ok: false, error: err.message, stack: err.stack });
   }
+});
+
+
+// log toutes les requêtes
+app.use((req, res, next) => {
+  console.log(`⚡ ${req.method} ${req.url}`);
+  next();
+});
+
+// gestion globale des erreurs
+app.use((err, req, res, next) => {
+  console.error("🔥 ERREUR GLOBALE :", err);
+  res.status(500).json({ ok: false, error: err.message, stack: err.stack });
 });
 
 function printRoutes(stack, prefix = "") {
