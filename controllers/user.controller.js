@@ -13,7 +13,6 @@ const generateRandomCode = (length)=>{
     }
     return code;
 }
-
 const registration = async (req, res, next) => {
     const reqFile = req.file
     try {
@@ -41,7 +40,6 @@ const registration = async (req, res, next) => {
         res.status(500).json({ message: error })
     }
 }
-
 const verifyCode = async (req, res, next) =>{
     const {email,code} = req.body
 
@@ -64,11 +62,9 @@ const verifyCode = async (req, res, next) =>{
         res.status(500).json({ message: error })
     }
 }
-
 const generateAccessToken = (user) => {
     return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '60000s' });
 }
-
 const connection = async (req, res, next) =>{
     const {email, password} = req.body
     try{
