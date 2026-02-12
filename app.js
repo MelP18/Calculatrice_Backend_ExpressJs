@@ -48,9 +48,9 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
-const indexRouter = require('./routes/index');
-const userRouter = require('./routes/user');
-const homeRouter = require('./routes/home');
+const indexRouter = require('./api/base-api');
+const userRouter = require('./api/user');
+const homeRouter = require('./api/home');
 
 const connectDB = require('./config/database');
 
