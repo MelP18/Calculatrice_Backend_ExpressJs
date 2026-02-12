@@ -1,10 +1,7 @@
-var express = require('express');
-var router = express.Router();
+module.exports = async function handler(req, res) {
+  if (req.method !== 'GET') {
+    return res.status(405).json({ message: 'Méthode non autorisée' });
+  }
 
-/* GET API home page. */
-
-router.get('/', function(req, res) {
-  res.json({ message: "API Calculatrice Backend OK 🚀" });
-});
-
-module.exports = router;
+  res.status(200).json({ message: "API Calculatrice Backend OK 🚀" });
+};

@@ -48,10 +48,6 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
-const indexRouter = require('./api/base-api');
-const userRouter = require('./api/user');
-const homeRouter = require('./api/home');
-
 const connectDB = require('./config/database');
 
 const app = express();
@@ -73,9 +69,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 /* Routes */
-app.use('/', indexRouter);
-app.use('/auth', userRouter);
-app.use('/home', homeRouter);
+// app.use('/', indexRouter);
+// app.use('/auth', userRouter);
+// app.use('/home', homeRouter);
+// require('./api/home/getProfile')(app);
+// require('./api/home/addCalculation')(app);
+// require('./api/home/getHistory')(app);
 
 /* Route test MongoDB */
 app.get('/test-db', async (req, res) => {
