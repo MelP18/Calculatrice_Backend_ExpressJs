@@ -4,8 +4,8 @@ const mail = require('../config/mail')
 const jwt = require('jsonwebtoken')
 require('dotenv').config()
 
+const characters = process.env.random_characters
 const generateRandomCode = (length)=>{
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     let code = '';
     for (let i = 0; i < length; i++) {
         const randomIndex = Math.floor(Math.random() * characters.length);
